@@ -1,0 +1,42 @@
+site_name: 'TextField with unit'
+site_description: 'A simple to use Jetpack Compose TextField with automatically value transformations and user specific ui transformations. E.g. save temperature in °C, present as °F in ui'
+site_author: 'Alexander Karkossa'
+site_url: 'https://ch4rl3x.github.io/textfield-unit/'
+
+
+# Repository
+repo_name: 'Settings'
+repo_url: 'https://github.com/ch4rl3x/textfield-unit'
+
+# Navigation
+nav:
+  - 'Overview': index.md
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  palette:
+    primary: 'black'
+    accent: 'deep orange'
+  font:
+    text: 'IBM Plex Sans'
+    code: 'IBM Plex Mono'
+
+# Extensions
+#markdown_extensions:
+#  - admonition
+#  - attr_list
+#  - codehilite:
+#      guess_lang: false
+#  - footnotes
+#  - toc:
+#      permalink: true
+#  - pymdownx.betterem
+#  - pymdownx.superfences
+#  - pymdownx.tabbed
+
+#extra:
+#  social:
+#    - icon: fontawesome/brands/twitter
+#      link: https://twitter.com/ch4rl3x

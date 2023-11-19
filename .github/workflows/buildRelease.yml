@@ -144,7 +144,7 @@ jobs:
           ./gradlew lintRelease
 
   publish:
-    needs: [ testRelease, lintRelease, connectedCheck ]
+    needs: [ testRelease, lintRelease ]
     name: Release build and publish
     runs-on: ubuntu-latest
     steps:

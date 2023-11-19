@@ -9,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
-
 @Immutable
 class TextFieldColors constructor(
     val focusedTextColor: Color,

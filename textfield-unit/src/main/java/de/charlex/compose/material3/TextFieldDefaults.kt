@@ -5,14 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
-
 @Immutable
 object TextFieldDefaults {
     @Composable
     fun colors(
         focusedTextColor: Color = MaterialTheme.colorScheme.onSurface,
         unfocusedTextColor: Color = MaterialTheme.colorScheme.onSurface,
-        disabledTextColor: Color =  MaterialTheme.colorScheme.onSurface
+        disabledTextColor: Color = MaterialTheme.colorScheme.onSurface
             .copy(alpha = 0.38f),
         errorTextColor: Color = MaterialTheme.colorScheme.onSurface,
         cursorColor: Color = MaterialTheme.colorScheme.primary,

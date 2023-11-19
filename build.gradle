@@ -1,13 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        kotlin_version = "1.8.10"
-        compose_bom_version = "2023.03.00"
-        compose_compiler_version = "1.4.4"
+        kotlin_version = "1.9.10"
+        compose_bom_version = "2023.10.01"
+        compose_compiler_version = "1.5.3"
         buildConfig = [
-                'compileSdk': 33,
+                'compileSdk': 34,
                 'minSdk'    : 23,
-                'targetSdk' : 33,
+                'targetSdk' : 34,
         ]
     }
     repositories {
@@ -34,7 +34,7 @@ subprojects {
 
     ext {
         PUBLISH_GROUP_ID = 'de.charlex.compose'
-        PUBLISH_VERSION = '1.0.0-rc01'
+        PUBLISH_VERSION = '1.0.0-rc02'
     }
 
     spotless {

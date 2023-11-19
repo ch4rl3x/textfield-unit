@@ -1,4 +1,4 @@
-package de.charlex.compose.textfield.unit
+package de.charlex.compose.unit
 
 import androidx.compose.runtime.compositionLocalOf
 

@@ -1,4 +1,4 @@
-package de.charlex.compose.textfield.unit
+package de.charlex.compose.material3
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -17,17 +17,13 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.LocalTextStyle
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldColors
-import androidx.compose.material.TextFieldColorsWithIcons
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TextFieldDefaults.indicatorLine
-import androidx.compose.material.TextFieldDefaults.textFieldWithLabelPadding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TextFieldDefaults.contentPaddingWithLabel
+import androidx.compose.material3.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -51,7 +47,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.ui.unit.dp
-import de.charlex.compose.textfield.unit.extensions.uiFormat
+import de.charlex.compose.unit.IUnit
+import de.charlex.compose.unit.UnitType
+import de.charlex.compose.unit.extensions.uiFormat
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.ParseException
@@ -61,7 +59,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 
-@OptIn(ExperimentalMaterialApi::class)
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Suppress("UNCHECKED_CAST")
 @Composable
 fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
@@ -89,15 +88,34 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
     keyboardActions: KeyboardActions = KeyboardActions(),
     maxLines: Int = Int.MAX_VALUE,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
-    shape: Shape = TextFieldDefaults.TextFieldShape,
-    colors: TextFieldColors = TextFieldDefaults.textFieldColors(
-        textColor = MaterialTheme.colors.primary
-    )
+    shape: Shape = TextFieldDefaults.shape,
+    colors: TextFieldColors
 ) {
+
+    val materialColors = TextFieldDefaults.colors(
+        focusedTextColor = colors.focusedTextColor,
+        unfocusedTextColor = colors.unfocusedTextColor,
+        disabledTextColor = colors.disabledTextColor,
+        errorTextColor = colors.errorTextColor,
+        cursorColor = colors.cursorColor,
+        errorCursorColor = colors.errorCursorColor,
+        focusedLeadingIconColor = colors.focusedLeadingIconColor,
+        unfocusedLeadingIconColor = colors.unfocusedLeadingIconColor,
+        disabledLeadingIconColor = colors.disabledLeadingIconColor,
+        errorLeadingIconColor = colors.errorLeadingIconColor,
+        focusedTrailingIconColor = colors.focusedTrailingIconColor,
+        unfocusedTrailingIconColor = colors.unfocusedTrailingIconColor,
+        disabledTrailingIconColor = colors.disabledTrailingIconColor,
+        errorTrailingIconColor = colors.errorTrailingIconColor,
+        focusedLabelColor = colors.focusedLabelColor,
+        unfocusedLabelColor = colors.unfocusedLabelColor,
+        disabledLabelColor = colors.disabledLabelColor,
+        errorLabelColor = colors.errorLabelColor
+    )
 
     val defaultDecimalSeparator = DecimalFormatSymbols.getInstance().decimalSeparator
     val currentUnitType = unit.getCurrentUnitType()
-    val paddingValues = textFieldWithLabelPadding(
+    val paddingValues = contentPaddingWithLabel(
         start = 0.dp,
         end = 5.dp
     )
@@ -119,25 +137,21 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
         )
     }
 
-    val textColor = colors.textColor(enabled = enabled && (asLabel || readOnly.not())).value
+    val textColor = colors.textColor(
+        enabled = enabled && (asLabel || readOnly.not()),
+        readOnly = readOnly,
+        isError = isError,
+        interactionSource = interactionSource
+    ).value
     val cursorColor = colors.cursorColor(isError = isError).value
     val labelColor = colors.labelColor(
         enabled = enabled,
-        error = isError,
+        isError = isError,
         interactionSource = interactionSource
     ).value
 
-    val leadingIconColor = if (colors is TextFieldColorsWithIcons) {
-        colors.leadingIconColor(enabled, isError, interactionSource).value
-    } else {
-        colors.leadingIconColor(enabled, isError).value
-    }
-
-    val trailingIconColor = if (colors is TextFieldColorsWithIcons) {
-        colors.trailingIconColor(enabled, isError, interactionSource).value
-    } else {
-        colors.trailingIconColor(enabled, isError).value
-    }
+    val leadingIconColor = colors.leadingIconColor(enabled, isError, interactionSource).value
+    val trailingIconColor = colors.trailingIconColor(enabled, isError, interactionSource).value
 
     val mergedTextStyle = textStyle.copy(
         textAlign = when (state.type) {
@@ -254,7 +268,7 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
                         enabled,
                         isError,
                         interactionSource,
-                        colors
+                        materialColors
                     ) else Modifier
                 )
                 .defaultMinSize(
@@ -383,7 +397,9 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
 
                     label?.let {
                         Box(
-                            Modifier.weight(1f, true).layoutId("Label")
+                            Modifier
+                                .weight(1f, true)
+                                .layoutId("Label")
                         ) {
                             CompositionLocalProvider(LocalContentColor provides labelColor) {
                                 it.invoke()
@@ -397,9 +413,7 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
                             .layoutId("TextField"),
                         contentAlignment = Alignment.CenterEnd,
                     ) {
-                        CompositionLocalProvider(LocalContentAlpha provides if (readOnly) 0.5f else 1f) {
-                            coreTextField()
-                        }
+                        coreTextField()
                     }
 
                     Box(

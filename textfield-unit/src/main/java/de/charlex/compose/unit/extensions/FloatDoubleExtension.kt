@@ -1,4 +1,4 @@
-package de.charlex.compose.textfield.unit.extensions
+package de.charlex.compose.unit.extensions
 
 import androidx.compose.runtime.Composable
 import java.text.DecimalFormat

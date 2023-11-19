@@ -4,9 +4,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.dp
 
 @Immutable
 object TextFieldDefaults {
+
+    val shape: Shape @Composable get() = MaterialTheme.shapes.extraSmall
+
+    val MinHeight = 56.dp
+
+    val MinWidth = 280.dp
+
     @Composable
     fun colors(
         focusedTextColor: Color = MaterialTheme.colorScheme.onSurface,

@@ -17,11 +17,11 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TextFieldDefaults.contentPaddingWithLabel
 import androidx.compose.material3.TextFieldDefaults.indicatorLine
 import androidx.compose.runtime.Composable
@@ -88,10 +88,13 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
     maxLines: Int = Int.MAX_VALUE,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     shape: Shape = TextFieldDefaults.shape,
-    colors: TextFieldColors
+    colors: TextFieldColors = de.charlex.compose.material3.TextFieldDefaults.colors(
+        focusedTextColor = MaterialTheme.colors.primary,
+        unfocusedTextColor = MaterialTheme.colors.primary
+    )
 ) {
 
-    val materialColors = TextFieldDefaults.colors(
+    val materialColors = androidx.compose.material3.TextFieldDefaults.colors(
         focusedTextColor = colors.focusedTextColor,
         unfocusedTextColor = colors.unfocusedTextColor,
         disabledTextColor = colors.disabledTextColor,

@@ -34,7 +34,7 @@ subprojects {
 
     ext {
         PUBLISH_GROUP_ID = 'de.charlex.compose'
-        PUBLISH_VERSION = '1.0.0-rc02'
+        PUBLISH_VERSION = '1.0.0-rc03'
     }
 
     spotless {

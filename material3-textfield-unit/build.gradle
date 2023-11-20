@@ -47,8 +47,6 @@ android {
 }
 
 dependencies {
-    api project(":unit")
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation "androidx.compose.material3:material3"

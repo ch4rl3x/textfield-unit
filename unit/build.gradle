@@ -8,6 +8,8 @@ apply from: '../buildCompose.gradle'
 
 
 android {
+    namespace "de.charlex.compose.unit"
+
     compileSdkVersion buildConfig.compileSdk
 
     defaultConfig {

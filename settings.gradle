@@ -1,2 +1,4 @@
-include ':textfield-unit'
+include ':unit'
+include ':material-textfield-unit'
+include ':material3-textfield-unit'
 rootProject.name = "textfield-unit"

@@ -2,7 +2,8 @@
 
 <a href="https://github.com/ch4rl3x/textfield-unit/actions?query=workflow%3ABuild"><img src="https://github.com/ch4rl3x/textfield-unit/actions/workflows/build.yml/badge.svg" alt="Build"></a>
 <a href="https://www.codefactor.io/repository/github/ch4rl3x/textfield-unit"><img src="https://www.codefactor.io/repository/github/ch4rl3x/textfield-unit/badge" alt="CodeFactor" /></a>
-<a href="https://repo1.maven.org/maven2/de/charlex/compose/textfield-unit/"><img src="https://img.shields.io/maven-central/v/de.charlex.compose/textfield-unit" alt="Maven Central" /></a>
+<a href="https://repo1.maven.org/maven2/de/charlex/compose/material/material-textfield-unit/"><img src="https://img.shields.io/maven-central/v/de.charlex.compose.material/material-textfield-unit" alt="Maven Central" /></a>
+<a href="https://repo1.maven.org/maven2/de/charlex/compose/material3/material3-textfield-unit/"><img src="https://img.shields.io/maven-central/v/de.charlex.compose.material3/material3-textfield-unit" alt="Maven Central" /></a>
 
 A simple to use Jetpack Compose TextField with automatically value transformations and user specific ui transformations. E.g. save temperature in °C, present as °F in ui
 
@@ -11,7 +12,13 @@ A simple to use Jetpack Compose TextField with automatically value transformatio
 Add the library to your module `build.gradle`
 ```gradle
 dependencies {
-    implementation 'de.charlex.compose:textfield-unit:1.0.0'
+    implementation 'de.charlex.compose.material:material-textfield-unit:1.0.0-rc04'
+}
+```
+or
+```gradle
+dependencies {
+    implementation 'de.charlex.compose.material3:material-textfield3-unit:1.0.0-rc04'
 }
 ```
 

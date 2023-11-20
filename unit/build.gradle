@@ -6,11 +6,6 @@ plugins {
 apply from: '../_ktlint.gradle'
 apply from: '../buildCompose.gradle'
 
-ext {
-    PUBLISH_ARTIFACT_ID = 'textfield-unit'
-}
-
-apply from: '../_publish.gradle'
 
 android {
     compileSdkVersion buildConfig.compileSdk

@@ -17,7 +17,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.foundation.text.selection.TextSelectionColors
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -89,8 +89,8 @@ fun <UNIT_TYPE : UnitType, VALUE_TYPE> TextFieldWithUnit(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     shape: Shape = TextFieldDefaults.shape,
     colors: TextFieldColors = de.charlex.compose.material3.TextFieldDefaults.colors(
-        focusedTextColor = MaterialTheme.colors.primary,
-        unfocusedTextColor = MaterialTheme.colors.primary
+        focusedTextColor = MaterialTheme.colorScheme.primary,
+        unfocusedTextColor = MaterialTheme.colorScheme.primary
     )
 ) {
 

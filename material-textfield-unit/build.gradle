@@ -47,7 +47,7 @@ android {
 }
 
 dependencies {
-    implementation project(":unit")
+    api project(":unit")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
